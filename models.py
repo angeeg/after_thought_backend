@@ -22,6 +22,7 @@ class Thought(BaseModel):
     body = CharField() 
     created_date = DateTimeField(default=datetime.datetime.now)
     starred = BooleanField(default=False)
+    # author = ForeignKeyField(User, backref='thoughts')
 
 class QuickThought(BaseModel):
     body = CharField()
