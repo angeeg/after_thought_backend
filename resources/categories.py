@@ -7,13 +7,18 @@ category = Blueprint('categories', 'category')
 
 # GET - index route - get all categories
 @category.route('/', methods=['GET'])
-def get_all_categories():
-    try:    
-        categories = [model_to_dict(category) for category in models.Category.select()]
-        print(categories)
-        return jsonify(data=categories, status={'code':200, 'message':'Success! Found all categories.'})
-    except models.DoesNotExist:
-        return jsonify(data={}, status={'code':401, 'message':'Error - cannot get categories.'})
+def category_index():
+    result = models.Category.select()
+    current_user_categories_dicts = [model_to_dict(category) for category in current_user.categories]
+
+    for category_dict in current_user_categories_dicts:
+        category_dict['author'].pop('password')
+
+    return jsonify(
+        data=current_user_categories_dicts,
+        message=f'Found {len(current_user_categories_dicts)} categories by {current_user.username}.',
+        status=200
+    ), 200
 
 # POST - create a category
 @category.route('/', methods=['POST'])
