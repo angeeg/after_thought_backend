@@ -61,4 +61,14 @@ def edit_thought(id):
         status=200
     ), 200
 
-
+# DELETE - delete single thought 
+@thought.route('/<id>', methods=['DELETE'])
+def delete_thought(id):
+    thought = models.Thought
+    query = thought.delete().where(thought.id == id)
+    query.execute()
+    return jsonify(
+        data='Thought has been deleted',
+        message='Thought successfully deleted!',
+        status=200
+    ), 200
