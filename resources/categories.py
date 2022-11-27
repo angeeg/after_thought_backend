@@ -20,6 +20,15 @@ def category_index():
         status=200
     ), 200
 
+# GET - get category by id 
+@category.route('/<id>', methods=['GET'])
+def get_category(id):
+    category = models.Category.get_by_id(id)
+    return jsonify(
+        data = model_to_dict(category),
+        message = "Success! 🎉 "
+    ), 200
+
 # POST - create a category
 @category.route('/', methods=['POST'])
 @login_required

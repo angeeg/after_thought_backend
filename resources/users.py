@@ -55,6 +55,7 @@ def get_logged_in_user():
 
 # GET - logout user 
 @user.route('/logout', methods=['GET'])
+@login_required
 def logout():
     logout_user()
     return jsonify(data={}, status=200, message='User is now logged out')
