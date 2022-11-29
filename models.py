@@ -1,8 +1,12 @@
+import os
+from playhouse.db_url import connect
 from peewee import * 
 import datetime
 from flask_login import UserMixin
 
-DATABASE = SqliteDatabase('after_thought.sqlite')
+DATABASE = connect(os.environ.get('DATABASE_URL') or 'sqlite:///after_thought.sqlite')
+# Connect to the database URL defined in the environment, falling
+# back to a local Sqlite database if no database URL is specified.
 
 class BaseModel(Model):
     class Meta:
