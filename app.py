@@ -61,12 +61,12 @@ def before_request():
     print("you should see this before each request") # optional -- to illustrate that this code runs before each request -- similar to custom middleware in express.  you could also set it up for specific blueprints only.
     models.DATABASE.connect()
 
-@after_this_request # use this decorator to Executes a function after this request
-def after_request(response):
-    """Close the db connetion after each request"""
-    print("you should see this after each request") # optional -- to illustrate that this code runs after each request
-    models.DATABASE.close()
-    return response # go ahead and send response back to client
+    @after_this_request # use this decorator to Executes a function after this request
+    def after_request(response):
+        """Close the db connetion after each request"""
+        print("you should see this after each request") # optional -- to illustrate that this code runs after each request
+        models.DATABASE.close()
+        return response # go ahead and send response back to client
                   # (in our case this will be some JSON)
 
 # ADD THESE THREE LINES -- because we need to initialize the
