@@ -43,10 +43,13 @@ def load_user(userid):
 
 CORS(user, origins=['http://localhost:3000', 'https://after-thought-capstone.herokuapp.com/'], supports_credentials=True)
 app.register_blueprint(user, url_prefix='/after-thought/v1/users')
+
 CORS(category, origins=['http://localhost:3000', 'https://after-thought-capstone.herokuapp.com/'], supports_credentials=True)
 app.register_blueprint(category, url_prefix='/after-thought/v1/categories')
+
 CORS(thought, origins=['http://localhost:3000', 'https://after-thought-capstone.herokuapp.com/'], supports_credentials=True)
 app.register_blueprint(thought, url_prefix='/after-thought/v1/thoughts')
+
 CORS(quick_thought, origins=['http://localhost:3000]', 'https://after-thought-capstone.herokuapp.com/'], supports_credentials=True)
 app.register_blueprint(quick_thought, url_prefix='/after-thought/v1/quick_thoughts')
 
